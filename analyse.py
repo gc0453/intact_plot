@@ -3,11 +3,15 @@ from pandas_df import df_csv
 
 def Minimum(data):
     min_Leistung = data['PowerOriginal'].min()
-    print(min_Leistung)
+    min_Leistung_zeile = data['PowerOriginal'].idxmin()
+    min_Leistung_zeit = min_Leistung_zeile / 60
+    return(min_Leistung, min_Leistung_zeit)
 
 def Maximum(data):
     max_Leistung = data['PowerOriginal'].max()
-    print(max_Leistung)
+    max_Leistung_zeile = data['PowerOriginal'].idxmax()
+    max_Leistung_zeit = max_Leistung_zeile / 60
+    return(max_Leistung, max_Leistung_zeit)
 
 
 def HF_Zonen(data):
@@ -38,15 +42,7 @@ def HF_Zonen(data):
 
     return HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5
 
-min_Leistung = Minimum(df_csv())
-max_Leistung = Maximum(df_csv())
-HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5 = HF_Zonen(df_csv())
 
-print("Zone 1:", HF_Zone1)
-#print("Zone 2:", HF_Zone2)
-#print("Zone 3:", HF_Zone3)
-#print("Zone 4:", HF_Zone4)
-#print("Zone 5:", HF_Zone5)
 
 
 
