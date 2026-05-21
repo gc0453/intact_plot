@@ -1,6 +1,5 @@
 import pandas as pd
-import pandas_df
-
+from pandas_df import df_csv
 
 def Minimum(data):
     min_Leistung = data['PowerOriginal'].min()
@@ -18,26 +17,36 @@ def HF_Zonen(data):
     HF_Zone_3_min= max_Heartrate * 0.7
     HF_Zone_4_min= max_Heartrate * 0.8
     HF_Zone_5_min= max_Heartrate * 0.9
-    HF_Zone_5_max= max_Heartrate
-    for row in data:
-        if HF_Zone_1_min <= data['HeartRate'] < HF_Zone_2_min:
-            HF_Zone1.list.append()
-        elif HF_Zone_2_min <= data['HeartRate'] < HF_Zone_3_min:
-            HF_Zone2.list.append()
-        elif HF_Zone_3_min <= data['HeartRate'] < HF_Zone_4_min:
-            HF_Zone3.list.append()
-        elif HF_Zone_4_min <= data['HeartRate'] < HF_Zone_5_min:
-            HF_Zone4.list.append()
-        elif HF_Zone_5_min <= data['HeartRate']:
-            HF_Zone5.list.append()
-    print(HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5)
-    #return HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5 
 
+    HF_Zone1 = []
+    HF_Zone2 = []
+    HF_Zone3 = []
+    HF_Zone4 = []
+    HF_Zone5 = []
 
+    for hr in data['HeartRate']:
+        if HF_Zone_1_min <= hr < HF_Zone_2_min:
+            HF_Zone1.append(hr)
+        elif HF_Zone_2_min <= hr < HF_Zone_3_min:
+            HF_Zone2.append(hr)
+        elif HF_Zone_3_min <= hr < HF_Zone_4_min:
+            HF_Zone3.append(hr)
+        elif HF_Zone_4_min <= hr < HF_Zone_5_min:
+            HF_Zone4.append(hr)
+        elif HF_Zone_5_min <= hr:
+            HF_Zone5.append(hr)
 
-min_Leistung = Minimum(pandas_df.df_csv)
-max_Leistung = Maximum(pandas_df.df_csv)
-HF_Zone = HF_Zonen(pandas_df.df_csv)
+    return HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5
+
+min_Leistung = Minimum(df_csv())
+max_Leistung = Maximum(df_csv())
+HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5 = HF_Zonen(df_csv())
+
+print("Zone 1:", HF_Zone1)
+#print("Zone 2:", HF_Zone2)
+#print("Zone 3:", HF_Zone3)
+#print("Zone 4:", HF_Zone4)
+#print("Zone 5:", HF_Zone5)
 
 
 
