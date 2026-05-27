@@ -40,9 +40,20 @@ def HF_Zonen(data):
         elif HF_Zone_5_min <= hr:
             HF_Zone5.append(hr)
 
-    return HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5
+    HF_Zone1_time = Umrechnen(len(HF_Zone1))
+    HF_Zone2_time = Umrechnen(len(HF_Zone2))
+    HF_Zone3_time = Umrechnen(len(HF_Zone3))
+    HF_Zone4_time = Umrechnen(len(HF_Zone4))
+    HF_Zone5_time = Umrechnen(len(HF_Zone5))
 
 
+    return HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5, HF_Zone1_time, HF_Zone2_time, HF_Zone3_time, HF_Zone4_time, HF_Zone5_time
 
 
-
+def Umrechnen(zeit):
+    if zeit < 60:
+        return zeit
+    else:
+        minuten = zeit // 60
+        sekunden = zeit % 60
+        return f"{minuten}:{sekunden} min"
