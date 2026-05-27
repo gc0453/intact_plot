@@ -18,6 +18,7 @@ def plot_line(data):
 
     fig.update_layout(title='Leistung und Herzfrequenz über Zeit')
 
+
     fig.update_xaxes(title_text='Zeit (s)')
     fig.update_yaxes(title_text='Leistung (W)', secondary_y=False)
     fig.update_yaxes(title_text='Herzfrequenz (bpm)', secondary_y=True)

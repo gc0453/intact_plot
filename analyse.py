@@ -3,11 +3,9 @@ import numpy as np
 from pandas_df import df_csv
 
 
-def Minimum(data):
-    min_Leistung = data['PowerOriginal'].min()
-    min_Leistung_zeile = data['PowerOriginal'].idxmin()
-    min_Leistung_zeit = Umrechnen(min_Leistung_zeile)
-    return(min_Leistung, min_Leistung_zeit)
+def avg_power(data):
+    avg_Leistung = data['PowerOriginal'].mean().round(1)
+    return(avg_Leistung)
 
 def Maximum(data):
     max_Leistung = data['PowerOriginal'].max()
@@ -52,6 +50,6 @@ def Umrechnen(zeit):
 
 def durchschnittsleistung_pro_zone(data):
     zonen_df = HF_Zonen(data)
-    avg_power = zonen_df.groupby("Zone")["PowerOriginal"].mean().round(1)
-    return avg_power
+    avg_power_per_zone = zonen_df.groupby("Zone")["PowerOriginal"].mean().round(1)
+    return avg_power_per_zone
 
