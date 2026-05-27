@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from plotly.io import show
 from plotly.subplots import make_subplots
 from analyse import HF_Zonen
-from pandas_df import df_csv #kann später gelöscht werden, wenn die Daten direkt übergeben werden können
+
 
 #plot, mit 2 y-Achsen, Leistung und Herzfrequenz
 def plot_line(data):
