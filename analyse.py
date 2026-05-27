@@ -53,8 +53,9 @@ def HF_Zonen(data):
 def Umrechnen(zeit):
    
     if zeit < 60:
-        return zeit
+        sekunden = zeit
+        return f"00:{sekunden:02d} min"
     else:
         minuten = zeit // 60
         sekunden = zeit % 60
-        return f"{minuten}:{sekunden} min"
+        return f"{minuten}:{sekunden:02d} min"
