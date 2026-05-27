@@ -25,19 +25,73 @@ def plot_line(data):
     return fig
 
 #plot, mit 1 y-Achse, Leistung und Herzfrequenz in einem Plot
-'''def plot_line(data):
+def plot_line_power(data):
+
+    fig = fig = make_subplots()
+    # Leistung
+    fig.add_trace( go.Scatter( y=data['PowerOriginal'], mode='lines', name='Leistung'), secondary_y=False)
+
+    
+    fig.update_layout(title='Leistung über Zeit')
+
+
+    fig.update_xaxes(title_text='Zeit (s)')
+    fig.update_yaxes(title_text='Leistung (W)')
+    return fig
+
+
+def plot_line_hr(data):
+    HF_Zonen_df = HF_Zonen(data)
+    max_hr = data["HeartRate"].max()
+
+    data = data.copy()
+    data["Zone"] = HF_Zonen_df["Zone"]
+
+    colors = {
+        1: "lightblue",
+        2: "green",
+        3: "yellow",
+        4: "orange",
+        5: "red"
+    }
 
     fig = go.Figure()
 
-    # Leistung
-    fig.add_trace(go.Scatter( y=data['PowerOriginal'], mode='lines', name='Leistung (W)'))
+    # Herzfrequenz-Linie
+    fig.add_trace(go.Scatter(
+        x=data.index,
+        y=data["HeartRate"],
+        mode="lines",
+        name="Herzfrequenz",
+        line=dict(color="black")
+    ))
+   
+    # Horizontale Zonenflächen
+       zone_ranges = {
+        1: (0.5 * max_hr, 0.6 * max_hr),
+        2: (0.6 * max_hr, 0.7 * max_hr),
+        3: (0.7 * max_hr, 0.8 * max_hr),
+        4: (0.8 * max_hr, 0.9 * max_hr),
+        5: (0.9 * max_hr, max_hr)
+    }
 
-    # Herzfrequenz
-    fig.add_trace(go.Scatter (y=data['HeartRate'], mode='lines', name='Herzfrequenz (bpm)'))
+    for zone, (y0, y1) in zone_ranges.items():
+        fig.add_hrect(
+            y0=y0,
+            y1=y1,
+            fillcolor=colors.get(zone, "gray"),
+            opacity=0.2,
+            line_width=0,
+            layer="below"
+        )
 
-    fig.update_layout( title='Leistung und Herzfrequenz über Zeit', xaxis_title='Zeit (s)', yaxis_title='Wert')
-    
-    return fig'''
+    fig.update_layout(
+        title="Herzfrequenz über Zeit mit HF-Zonen",
+        xaxis_title="Zeit (s)",
+        yaxis_title="Herzfrequenz (bpm)"
+    )
+
+    return fig
 
 def bar(HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5):
     fig_bar = go.Figure()
