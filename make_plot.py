@@ -67,7 +67,7 @@ def plot_line_hr(data):
     ))
    
     # Horizontale Zonenflächen
-       zone_ranges = {
+    zone_ranges = {
         1: (0.5 * max_hr, 0.6 * max_hr),
         2: (0.6 * max_hr, 0.7 * max_hr),
         3: (0.7 * max_hr, 0.8 * max_hr),
