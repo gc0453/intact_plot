@@ -5,17 +5,12 @@ from pandas_df import df_csv
 from make_plot import bar, plot_line
 
 
-# Wo startet sie Zeitreihe
-# Wo endet sich
-# Was ist die Maximale und Minimale Spannung
-# Grafik
-tab1, tab2 = st.tabs(["Herzfrequenz-Zonen", "Power-Data"])
+tab1, tab2 = st.tabs(["Herzfrequenz-Zonen", "Power-Data"]) #Tabs erstellen
 
-zone_times = HF_Zonen_zeit(HF_Zonen(df_csv()))
+zone_times = HF_Zonen_zeit(HF_Zonen(df_csv())) #Daten holen
 
 with tab1:
-    #st.dataframe(Zonen_df[['Zone','HeartRate', 'PowerOriginal']], use_container_width=True)
-    st.header("Herzfrequenz-Zonen")
+    st.header("Herzfrequenz-Zonen") #Name Header
     st.write("Zone 1: 50-60% der maximalen Herzfrequenz")
     st.write("Zeit in der Zone 1 verbracht: ",Umrechnen(zone_times[0]))
     st.write("durchschnittliche Leistung in Zone 1: ", durchschnittsleistung_pro_zone(df_csv())[1], "Watt")
@@ -32,7 +27,7 @@ with tab1:
     st.write("Zeit in der Zone 5 verbracht: ",Umrechnen(zone_times[4]))
     st.write("durchschnittliche Leistung in Zone 5: ", durchschnittsleistung_pro_zone(df_csv())[5], "Watt")
 
-    st.plotly_chart(bar(zone_times[0], zone_times[1], zone_times[2], zone_times[3], zone_times[4]))
+    st.plotly_chart(bar(zone_times[0], zone_times[1], zone_times[2], zone_times[3], zone_times[4])) #Grafik
 
 with tab2:
     st.header("Power-Data")
