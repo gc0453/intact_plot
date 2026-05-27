@@ -41,12 +41,11 @@ def plot_line(data):
 def bar(HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5):
     fig_bar = go.Figure()
     # Herzfrequenz
-    fig_bar.add_trace(go.Bar (y=[len(HF_Zone1)], name='HeartRate_Zone1'))
-    fig_bar.add_trace(go.Bar (y=[len(HF_Zone2)], name='HeartRate_Zone2'))
-    fig_bar.add_trace(go.Bar (y=[len(HF_Zone3)], name='HeartRate_Zone3'))
-    fig_bar.add_trace(go.Bar (y=[len(HF_Zone4)], name='HeartRate_Zone4'))
-    fig_bar.add_trace(go.Bar (y=[len(HF_Zone5)], name='HeartRate_Zone5'))
-
+    fig_bar.add_trace(go.Bar (y=[(HF_Zone1)], name='HeartRate_Zone1'))
+    fig_bar.add_trace(go.Bar (y=[(HF_Zone2)], name='HeartRate_Zone2'))
+    fig_bar.add_trace(go.Bar (y=[(HF_Zone3)], name='HeartRate_Zone3'))
+    fig_bar.add_trace(go.Bar (y=[(HF_Zone4)], name='HeartRate_Zone4'))
+    fig_bar.add_trace(go.Bar (y=[(HF_Zone5)], name='HeartRate_Zone5'))
 
     fig_bar.update_layout( title='Zeit in den 5 verschiedenen Herzfrequenz-Zonen', xaxis_title='Zonen', yaxis_title='Zeit', barmode='group')
     return fig_bar

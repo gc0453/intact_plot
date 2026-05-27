@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+from pandas_df import df_csv
 
 
 def Minimum(data):
@@ -15,40 +17,28 @@ def Maximum(data):
 
 
 def HF_Zonen(data):
-    max_Heartrate = data['HeartRate'].max()
-    HF_Zone_1_min= max_Heartrate * 0.5
-    HF_Zone_2_min= max_Heartrate * 0.6
-    HF_Zone_3_min= max_Heartrate * 0.7
-    HF_Zone_4_min= max_Heartrate * 0.8
-    HF_Zone_5_min= max_Heartrate * 0.9
+    max_hr = data["HeartRate"].max()
 
-    HF_Zone1 = []
-    HF_Zone2 = []
-    HF_Zone3 = []
-    HF_Zone4 = []
-    HF_Zone5 = []
+    conditions = [
+        data["HeartRate"] < 0.6 * max_hr,
+        data["HeartRate"] < 0.7 * max_hr,
+        data["HeartRate"] < 0.8 * max_hr,
+        data["HeartRate"] < 0.9 * max_hr,
+        data["HeartRate"] >= 0.9 * max_hr,
+    ]
 
-    for hr in data['HeartRate']:
-        if HF_Zone_1_min <= hr < HF_Zone_2_min:
-            HF_Zone1.append(hr)
-        elif HF_Zone_2_min <= hr < HF_Zone_3_min:
-            HF_Zone2.append(hr)
-        elif HF_Zone_3_min <= hr < HF_Zone_4_min:
-            HF_Zone3.append(hr)
-        elif HF_Zone_4_min <= hr < HF_Zone_5_min:
-            HF_Zone4.append(hr)
-        elif HF_Zone_5_min <= hr:
-            HF_Zone5.append(hr)
+    choices = [1, 2, 3, 4, 5]
 
-    HF_Zone1_time = Umrechnen(len(HF_Zone1))
-    HF_Zone2_time = Umrechnen(len(HF_Zone2))
-    HF_Zone3_time = Umrechnen(len(HF_Zone3))
-    HF_Zone4_time = Umrechnen(len(HF_Zone4))
-    HF_Zone5_time = Umrechnen(len(HF_Zone5))
+    data["Zone"] = np.select(conditions, choices)
 
+    return data
 
-    return HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5, HF_Zone1_time, HF_Zone2_time, HF_Zone3_time, HF_Zone4_time, HF_Zone5_time
-
+def HF_Zonen_zeit(data):
+    zone_times = []
+    for zone in range(1, 6):
+        zone_time = len(data[data["Zone"] == zone])
+        zone_times.append(zone_time)
+    return zone_times
 
 def Umrechnen(zeit):
    
@@ -59,3 +49,9 @@ def Umrechnen(zeit):
         minuten = zeit // 60
         sekunden = zeit % 60
         return f"{minuten}:{sekunden:02d} min"
+
+def durchschnittsleistung_pro_zone(data):
+    zonen_df = HF_Zonen(data)
+    avg_power = zonen_df.groupby("Zone")["PowerOriginal"].mean().round(1)
+    return avg_power
+
