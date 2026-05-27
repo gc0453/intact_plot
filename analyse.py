@@ -1,16 +1,16 @@
 import pandas as pd
-from pandas_df import df_csv
+
 
 def Minimum(data):
     min_Leistung = data['PowerOriginal'].min()
     min_Leistung_zeile = data['PowerOriginal'].idxmin()
-    min_Leistung_zeit = min_Leistung_zeile / 60
+    min_Leistung_zeit = Umrechnen(min_Leistung_zeile)
     return(min_Leistung, min_Leistung_zeit)
 
 def Maximum(data):
     max_Leistung = data['PowerOriginal'].max()
     max_Leistung_zeile = data['PowerOriginal'].idxmax()
-    max_Leistung_zeit = max_Leistung_zeile / 60
+    max_Leistung_zeit = Umrechnen(max_Leistung_zeile)
     return(max_Leistung, max_Leistung_zeit)
 
 
@@ -51,6 +51,7 @@ def HF_Zonen(data):
 
 
 def Umrechnen(zeit):
+   
     if zeit < 60:
         return zeit
     else:

@@ -38,8 +38,6 @@ def plot_line(data):
     
     return fig'''
 
-HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5, HF_Zone1_time, HF_Zone2_time, HF_Zone3_time, HF_Zone4_time, HF_Zone5_time = HF_Zonen(df_csv())
-
 def bar(HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5):
     fig_bar = go.Figure()
     # Herzfrequenz

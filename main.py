@@ -53,3 +53,5 @@ with tab1:
 
 with tab2:
     st.header("Power-Data")
+    st.write("Maximale Leistung: ", Maximum(df_csv())[0], "Watt, erreicht bei: ", Maximum(df_csv())[1], "min")
+    st.write("Minimale Leistung: ", Minimum(df_csv())[0], "Watt, erreicht bei: ", Minimum(df_csv())[1], "min")
