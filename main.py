@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from analyse import HF_Zonen
+from analyse import HF_Zonen, Minimum, Maximum, Umrechnen
 from pandas_df import df_csv
 from make_plot import bar, plot_line
 
@@ -53,5 +53,7 @@ with tab1:
 
 with tab2:
     st.header("Power-Data")
-    st.write("Maximale Leistung: ", Maximum(df_csv())[0], "Watt, erreicht bei: ", Maximum(df_csv())[1], "min")
-    st.write("Minimale Leistung: ", Minimum(df_csv())[0], "Watt, erreicht bei: ", Minimum(df_csv())[1], "min")
+    st.write("Maximale Leistung: ", Maximum(df_csv())[0], "Watt, erreicht bei: ", Maximum(df_csv())[1])
+    st.write("Minimale Leistung: ", Minimum(df_csv())[0], "Watt, erreicht bei: ", Minimum(df_csv())[1])
+
+    st.plotly_chart(plot_line(df_csv()))
