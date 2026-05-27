@@ -39,6 +39,7 @@ def plot_line(data):
     
     return fig'''
 
+#Balkendiagramm
 def bar(HF_Zone1, HF_Zone2, HF_Zone3, HF_Zone4, HF_Zone5):
     fig_bar = go.Figure()
     # Herzfrequenz
