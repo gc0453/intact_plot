@@ -40,10 +40,9 @@ def plot_line_power(data):
     return fig
 
 
-def plot_line_hr(data):
+def plot_line_hr(data, max_hr):
     HF_Zonen_df = HF_Zonen(data)
-    max_hr = data["HeartRate"].max()
-
+    
     data = data.copy()
     data["Zone"] = HF_Zonen_df["Zone"]
 

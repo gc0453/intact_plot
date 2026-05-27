@@ -4,30 +4,6 @@ from analyse import HF_Zonen, Maximum, Umrechnen, HF_Zonen_zeit, avg_power, durc
 from pandas_df import df_csv
 from make_plot import bar, plot_line, plot_line_hr, plot_line_power
 
-<<<<<<< HEAD
-
-tab1, tab2 = st.tabs(["Herzfrequenz-Zonen", "Power-Data"]) #Tabs erstellen
-
-zone_times = HF_Zonen_zeit(HF_Zonen(df_csv())) #Daten holen
-
-with tab1:
-    st.header("Herzfrequenz-Zonen") #Name Header
-    st.write("Zone 1: 50-60% der maximalen Herzfrequenz")
-    st.write("Zeit in der Zone 1 verbracht: ",Umrechnen(zone_times[0]))
-    st.write("durchschnittliche Leistung in Zone 1: ", durchschnittsleistung_pro_zone(df_csv())[1], "Watt")
-    st.write("Zone 2: 60-70% der maximalen Herzfrequenz")
-    st.write("Zeit in der Zone 2 verbracht: ",Umrechnen(zone_times[1]))
-    st.write("durchschnittliche Leistung in Zone 2: ", durchschnittsleistung_pro_zone(df_csv())[2], "Watt")
-    st.write("Zone 3: 70-80% der maximalen Herzfrequenz")
-    st.write("Zeit in der Zone 3 verbracht: ",Umrechnen(zone_times[2]))
-    st.write("durchschnittliche Leistung in Zone 3: ", durchschnittsleistung_pro_zone(df_csv())[3], "Watt")
-    st.write("Zone 4: 80-90% der maximalen Herzfrequenz")
-    st.write("Zeit in der Zone 4 verbracht: ",Umrechnen(zone_times[3]))
-    st.write("durchschnittliche Leistung in Zone 4: ", durchschnittsleistung_pro_zone(df_csv())[4], "Watt")
-    st.write("Zone 5: 90-100% der maximalen Herzfrequenz")
-    st.write("Zeit in der Zone 5 verbracht: ",Umrechnen(zone_times[4]))
-    st.write("durchschnittliche Leistung in Zone 5: ", durchschnittsleistung_pro_zone(df_csv())[5], "Watt")
-=======
 #person_dict = read_data.load_person_data()
 #person_names = read_data.get_person_list(person_dict)
 st.write("# Interaktive Plots")
@@ -56,11 +32,10 @@ with tab1:
     st.write("##### Zone 5: 90-100% der maximalen Herzfrequenz")
     st.write("###### Zeit in der Zone 5 verbracht: ",Umrechnen(zone_times[4]))
     st.write("###### durchschnittliche Leistung in Zone 5: ", durchschnittsleistung_pro_zone(df_csv())[5], "Watt")
->>>>>>> cfeddd3b8b7856a5e433b73dd8a8392e269ad008
 
     st.plotly_chart(bar(zone_times[0], zone_times[1], zone_times[2], zone_times[3], zone_times[4])) #Grafik
-
-    st.plotly_chart(plot_line_hr(df_csv()))
+    max_hr = st.slider("Maximale Herzfrequenz (bpm)",min_value=140,max_value=220,value=190,step=1) #Eingabe max. HF
+    st.plotly_chart(plot_line_hr(df_csv(), max_hr))
 
 with tab2:
     st.header("Power-Data")
@@ -69,11 +44,7 @@ with tab2:
     st.plotly_chart(plot_line_power(df_csv()))
     
 
-<<<<<<< HEAD
-    st.plotly_chart(plot_line(df_csv()))
-=======
 with tab3:
     st.header("Combined - Data")
     st.write("Inhalt für Tab 3")
     st.plotly_chart(plot_line(df_csv()))
->>>>>>> cfeddd3b8b7856a5e433b73dd8a8392e269ad008
