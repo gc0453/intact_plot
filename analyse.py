@@ -2,11 +2,12 @@ import pandas as pd
 import numpy as np
 from pandas_df import df_csv
 
-
+#Durschnitt Leistung
 def avg_power(data):
     avg_Leistung = data['PowerOriginal'].mean().round(1)
     return(avg_Leistung)
 
+#Maximale Leistung
 def Maximum(data):
     max_Leistung = data['PowerOriginal'].max()
     max_Leistung_zeile = data['PowerOriginal'].idxmax()
@@ -14,8 +15,8 @@ def Maximum(data):
     return(max_Leistung, max_Leistung_zeit)
 
 
-def HF_Zonen(data):
-    max_hr = data["HeartRate"].max()
+def HF_Zonen(data, max_hr):
+    #max_hr = data["HeartRate"].max()
 
     conditions = [
         data["HeartRate"] < 0.6 * max_hr,
@@ -31,7 +32,8 @@ def HF_Zonen(data):
 
     return data
 
-def HF_Zonen_zeit(data):
+def HF_Zonen_zeit(data, max_hr):
+    data = HF_Zonen(data, max_hr)
     zone_times = []
     for zone in range(1, 6):
         zone_time = len(data[data["Zone"] == zone])
@@ -48,8 +50,8 @@ def Umrechnen(zeit):
         sekunden = zeit % 60
         return f"{minuten}:{sekunden:02d} min"
 
-def durchschnittsleistung_pro_zone(data):
-    zonen_df = HF_Zonen(data)
-    avg_power_per_zone = zonen_df.groupby("Zone")["PowerOriginal"].mean().round(1)
+def durchschnittsleistung_pro_zone(data, max_hr):
+    zonen_df = HF_Zonen(data, max_hr)
+    avg_power_per_zone = zonen_df.groupby("Zone")["PowerOriginal"].mean().round(1).reindex([1, 2, 3, 4, 5], fill_value=0)
     return avg_power_per_zone
 

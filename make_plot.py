@@ -41,7 +41,7 @@ def plot_line_power(data):
 
 
 def plot_line_hr(data, max_hr):
-    HF_Zonen_df = HF_Zonen(data)
+    HF_Zonen_df = HF_Zonen(data, max_hr)
     
     data = data.copy()
     data["Zone"] = HF_Zonen_df["Zone"]
