@@ -2,7 +2,7 @@ import plotly.express as plt
 import plotly.graph_objects as go
 from plotly.io import show
 from plotly.subplots import make_subplots
-from analyse import HF_Zonen
+from source.analyse import HF_Zonen
 
 
 #plot, mit 2 y-Achsen, Leistung und Herzfrequenz

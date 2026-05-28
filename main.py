@@ -1,8 +1,8 @@
 import streamlit as st
 #from PIL import Image
-from analyse import HF_Zonen, Maximum, Umrechnen, HF_Zonen_zeit, avg_power, durchschnittsleistung_pro_zone
-from pandas_df import df_csv
-from make_plot import bar, plot_line, plot_line_hr, plot_line_power
+from source.analyse import HF_Zonen, Maximum, Umrechnen, HF_Zonen_zeit, avg_power, durchschnittsleistung_pro_zone
+from source.pandas_df import df_csv
+from source.make_plot import bar, plot_line, plot_line_hr, plot_line_power
 
 st.write("# Interaktive Plots")
 

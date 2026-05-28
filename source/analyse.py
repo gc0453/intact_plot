@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from pandas_df import df_csv
+from source.pandas_df import df_csv
 
 #Durschnitt Leistung
 def avg_power(data):
