@@ -12,5 +12,10 @@ Bevor das Programm verwendet werden kann, muss das Repository auf Ihr Gerät gek
 
 #Programmbeschreibung:
 Slide 1: Herzfrequenzzonen
-
 ![Bild_1](screenshot/src_1.png)
+![Bild_2](screenshot/src_2.png)
+![Bild_3](screenshot/src_3.png)
+Slide 2:
+![Bild_4](screenshot/src_4.png)
+Slide 3:
+![Bild_5](screenshot/src_5.png)
