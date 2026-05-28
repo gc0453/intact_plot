@@ -9,3 +9,8 @@ Aufgabe ist es die Datei activity.csv einzulesen und die Leistungswerte bzw. Her
 #Installationsanleitung:
 
 Bevor das Programm verwendet werden kann, muss das Repository auf Ihr Gerät geklont ( Befehl: git clone https://github.com/gc0453/intact_plot.git) und mit PDM installiert werden ( Befehl: pdm install ). Das Programm kann anschließend mit dem folgenden Befehl ausgeführt werden: pdm run streamlit run main.py 
+
+#Programmbeschreibung:
+Slide 1: Herzfrequenzzonen
+
+![Bild_1](screenshot/src_1.png)
