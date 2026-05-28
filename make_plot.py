@@ -84,6 +84,14 @@ def plot_line_hr(data, max_hr):
             layer="below"
         )
 
+        fig.add_trace(go.Scatter(
+            x=[None],
+            y=[None],
+            mode="lines",
+            line=dict(width=10, color=colors.get(zone, "gray")),
+            name=f"Zone {zone}: {int(y0)}-{int(y1)} bpm"
+        ))
+
     fig.update_layout(
         title="Herzfrequenz über Zeit mit HF-Zonen",
         xaxis_title="Zeit (s)",
