@@ -33,9 +33,6 @@ with tab1:
     st.write("###### Zeit in der Zone 5 verbracht: ",Umrechnen(zone_times[4]))
     st.write("###### durchschnittliche Leistung in Zone 5: ", durchschnittsleistung_pro_zone(data, max_hr)[5], "Watt")
 
-    
-
-
 with tab2:
     st.header("Power-Data")
     st.write("Maximale Leistung: ", Maximum(df_csv())[0], "Watt, erreicht bei: ", Maximum(df_csv())[1])
